@@ -1,0 +1,14 @@
+%{
+%}
+%%
+
+[A-Z]+ {printf("\n it is a capital letters \n");}
+.+ {printf("\n it is not a capital letters \n");}
+%%
+int yywrap(void) {}
+int main()
+{
+printf("\n entre a string :");
+yylex();
+return 0;
+}

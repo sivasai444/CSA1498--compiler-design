@@ -1,0 +1,13 @@
+%{
+int ln=0;
+%}
+%%
+.* {ln++; fprintf(yyout, "\n%d:%s",ln,yytext);}
+%%
+int yywrap(void) {}
+int main()
+{
+yyin=fopen("vote.txt","r");
+yyout=fopen("outnew111.txt","w");
+yylex();
+}
