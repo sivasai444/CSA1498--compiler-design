@@ -1,0 +1,12 @@
+%{
+#include <stdio.h>
+%}
+%%
+"shaiva" {printf("kadapa"); }
+. {printf("%c",yytext[0]); }
+%%
+int yywrap(){}
+int main() 
+{
+ yylex(); 
+}
