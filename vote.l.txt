@@ -1,7 +1,0 @@
-#include<stdio.h>
-int main(){
-int n=18;
-if(n<=18){
-printf("accept for vote");}
-else {
-printf("not accept for vote");}
