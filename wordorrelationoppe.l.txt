@@ -1,0 +1,21 @@
+%{
+    #include<string.h>
+	char words[20][20];
+	char operators[20][20];
+	int i=0,j=0;
+%}
+%%
+[a-zA-Z0-9]+ {strcpy(words[i++],yytext);}
+("<"|">"|"="|"!") {strcpy(operators[j++],yytext);}
+%%
+int yywrap(void) {}
+int main()
+{
+	printf("Enter the Sequence:");
+	yylex();
+	printf("\nWords=");
+	for(int k=0;k<i;k++) printf("%s ",words[k]);
+	printf("\nRelational_Operators=");
+	for(int k=0;k<j;k++) printf("%s ",operators[k]);
+	return 0;
+}
