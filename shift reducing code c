@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+char stack[10];
+int top=-1;
+void shift(char s)
+{
+	stack[++top]=s;
+	printf("Shift-%c\n",s);
+}
+void reduce()
+{
+	if(stack[top]=='d')
+	{
+		printf("Reducing C->d\n");
+		stack[top]='C';
+		reduce();
+	}
+	if(top>=1 && (stack[top]=='C' && stack[top-1]=='c'))
+	{
+		printf("Reducing C->cC\n");
+		stack[--top]='C';
+		reduce();
+	}
+	if(top>=1 && (stack[top]=='C' && stack[top]=='C'))
+	{
+		printf("Reducing S->CC\n");
+		stack[--top]='S';
+		return;
+	}
+}
+int main()
+{
+	char input[10];
+	printf("Shift Reduce Parser for the Grammar\nS->CC\nC->cC\nC->d\n");
+	printf("Enter the Input:");
+	scanf("%s",input);
+	for(int i=0;i<strlen(input);i++)
+	{
+		shift(input[i]);
+		reduce();
+	}
+	if(top==0 && stack[top]=='S') printf("Parsing Succeed!!");
+	else printf("Parsing Failed!!");
+}
