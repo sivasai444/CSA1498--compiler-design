@@ -1,0 +1,19 @@
+%{
+	#include <string.h>
+	char key[20][20],id[20][20],opp[20][20],num[20][20],str[20][20];
+	int k=0,i=0,o=0,n=0,s=0;
+%}
+%%
+int|while|for|if|else|main|include|<stdio.h>|return {printf("Keyword=%s\n",yytext);}
+[a-zA-Z][0-9a-zA-Z]* printf("Identifier=%s\n",yytext);
+[+*/\-{}();,=#] printf("Operator or Punctuator=%s\n",yytext);
+[0-9]+ printf("Integer=%s\n",yytext);
+\"[a-zA-Z0-9]+\" printf("String=%s\n",yytext);
+\n|" " {}
+%%
+int yywrap(void) {}
+int main()
+{
+	yyin=fopen("code6.txt","r");
+	yylex();
+ }

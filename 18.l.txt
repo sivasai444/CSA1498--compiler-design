@@ -1,0 +1,16 @@
+%{
+	int cc=0;
+%}
+%%
+"//" cc+=1;
+"/*"[A-Za-z0-9" "]+"*/" cc+=1;
+. {}
+%%
+int yywrap(void){}
+int main()
+{
+	yyin=fopen("code5.txt","r");
+	yylex();
+	printf("Comment Line Count=%d",cc);
+	return 0;
+}

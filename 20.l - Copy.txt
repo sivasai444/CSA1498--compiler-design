@@ -1,0 +1,16 @@
+%{
+	int pc=0,nc=0;
+%}
+%%
+"-"[0-9]+ nc+=1;
+[0-9]+ pc+=1;
+" " {}
+%%
+int yywrap(void){}
+int main()
+{
+	printf("Enter the Number Sequence:");
+	yylex();
+	printf("Positive Numbers=%d\nNegative Numbers:%d",pc,nc);
+	return 0;
+}
